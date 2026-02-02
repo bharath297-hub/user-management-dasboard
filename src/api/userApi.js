@@ -3,40 +3,38 @@ import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 export const userApi = createApi({
   reducerPath: "userApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: import.meta.env.VITE_API_BASE_URL + "/api/",
-  }),
+  baseUrl: import.meta.env.VITE_API_BASE_URL,
+}),
   endpoints: (builder) => ({
-
     login: builder.mutation({
       query: (credentials) => ({
         url: "login",
         method: "POST",
-        body: credentials
+        body: credentials,
       }),
     }),
 
     getUsers: builder.query({
-      query: () => "users"
+      query: () => "users",
     }),
 
     getUserById: builder.query({
-      query: (id) => `users/${id}`
+      query: (id) => `users/${id}`,
     }),
 
     addUser: builder.mutation({
       query: (user) => ({
         url: "users",
         method: "POST",
-        body: user
+        body: user,
       }),
     }),
-
   }),
 });
 
-export const { 
+export const {
   useLoginMutation,
   useGetUsersQuery,
   useGetUserByIdQuery,
-  useAddUserMutation 
+  useAddUserMutation,
 } = userApi;
